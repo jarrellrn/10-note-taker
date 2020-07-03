@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path');
 const app = express()
+const dbJson = require('./db/db.json')
 const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -18,10 +19,10 @@ app.get(["/","/home","/index"], function(req, res) {
 app.get("/notes", function(req, res) {
   res.sendFile(path.join(__dirname, "public/notes.html"));
 });
-// // Gets All Reservations //
-// app.get('/api/tables', (req, res) => {
-//   res.json(reservation);
-// });
+
+app.get('/api/notes', (req, res) => {
+  res.json(dbJson);
+});
 // // Get Waitlist //
 // app.get('/api/waitlist', (req, res) => {
 //   res.json(waitlist);
@@ -32,23 +33,23 @@ app.get("/notes", function(req, res) {
 // });
 
 // // Create New Reservation //
-// app.post("/api/tables", function(req, res) {
-//   var newReservation = req.body;
+app.post("/api/tables", function(req, res) {
+  var newReservation = req.body;
 //   // Using a RegEx Pattern to remove spaces from newCharacter
 //   // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-//   // newReservation = newReservation.name
-//   // .name.replace(/\s+/g, "").toLowerCase() 
-//   console.log(newReservation);
-//   if (reservation.length > 4) {
-//     waitlist.push(newReservation);
+  newReservation = newReservation.name
+  name.replace(/\s+/g, "").toLowerCase() 
+  console.log(newReservation);
+  if (reservation.length > 4) {
+    waitlist.push(newReservation);
     
-//   } else {
+  } else {
       
-//     reservation.push(newReservation);
-//   }
-//   res.json(newReservation);
+    reservation.push(newReservation);
+  }
+  res.json(newReservation);
   
-// });
+});
 
 
 
