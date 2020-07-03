@@ -11,15 +11,13 @@ const logger = (req, res, next) => {
   next();
 }
 
-app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "home.html"));
+app.get(["/","/home","/index"], function(req, res) {
+  res.sendFile(path.join(__dirname, "public/index.html"));
 });
-app.get("/reserve", function(req, res) {
-  res.sendFile(path.join(__dirname, "reserve.html"));
+
+app.get("/notes", function(req, res) {
+  res.sendFile(path.join(__dirname, "public/notes.html"));
 });
-app.get("/tables", function(req, res) {
-    res.sendFile(path.join(__dirname, "tables.html"));
-  });
 // // Gets All Reservations //
 // app.get('/api/tables', (req, res) => {
 //   res.json(reservation);
